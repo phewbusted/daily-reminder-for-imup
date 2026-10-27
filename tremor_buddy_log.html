@@ -1,236 +1,486 @@
-<!doctype html>
-<html lang="id">
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Our Little Care Log 💗</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little care logs 💙</title>
+
 <style>
-:root{
-  --pink:#f6a8c8; --pink2:#ffe4ef; --rose:#c94f83; --ink:#493442;
-  --cream:#fffafc; --lav:#eee7ff; --line:#f2cddd; --white:#fff;
+:root {
+  --blue: #8fc5f4;
+  --deep: #28639a;
+  --pale: #eaf5ff;
+  --ink: #233d57;
+  --line: #c8e2fa;
+  --white: #ffffff;
 }
-*{box-sizing:border-box}
-body{
- margin:0; font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;
- background:linear-gradient(160deg,#fff4f8 0%,#f9f1ff 55%,#fffaf1 100%);
- color:var(--ink); min-height:100vh; padding:22px 14px 40px;
+
+* {
+  box-sizing: border-box;
 }
-.wrap{max-width:760px;margin:auto}
-.hero{
- text-align:center;padding:26px 20px 22px;border:2px solid #fff;
- background:rgba(255,255,255,.78);border-radius:28px;box-shadow:0 10px 35px #d88aaf22;
+
+body {
+  margin: 0;
+  padding: 22px 14px 40px;
+  font-family: "Trebuchet MS", system-ui, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(
+    155deg, #f1f8ff, #e9f3ff, #f8fbff
+  );
 }
-.heart{font-size:2.4rem;animation:float 2.4s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-5px)}}
-h1{font-size:clamp(1.8rem,5vw,2.5rem);margin:7px 0;color:var(--rose)}
-.sub{margin:0;line-height:1.6;color:#806574}
-.pill{display:inline-block;background:var(--pink2);color:var(--rose);padding:7px 12px;border-radius:999px;font-size:.86rem;margin-top:12px}
-.card{background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:22px;padding:20px;margin-top:16px;box-shadow:0 7px 22px #d88aaf12}
-h2{font-size:1.15rem;margin:0 0 15px;color:#a53e70}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.field{display:flex;flex-direction:column;gap:7px}
-.full{grid-column:1/-1}
-label{font-size:.92rem;font-weight:700}
-input,select,textarea{
- width:100%;font:inherit;color:var(--ink);padding:12px 13px;border-radius:13px;
- border:1.5px solid #efc7d8;background:#fffdfd;outline:none;
+
+.container {
+  max-width: 720px;
+  margin: auto;
 }
-input:focus,select:focus,textarea:focus{border-color:var(--rose);box-shadow:0 0 0 3px #f6a8c833}
-textarea{min-height:95px;resize:vertical}
-.hint{font-size:.83rem;color:#8a7180;line-height:1.5;margin:4px 0 0}
-.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-button{font:inherit;font-weight:800;border:0;border-radius:14px;padding:12px 16px;cursor:pointer}
-.primary{background:linear-gradient(120deg,#f4a0c3,#e9b7f4);color:#562e43;flex:1}
-.secondary{background:#fff0f6;color:#a53e70;border:1px solid #f0c2d6}
-.danger{background:#fff1ee;color:#a64747;border:1px solid #f3c9c3}
-.status{font-size:.9rem;margin-top:12px;min-height:1.3em;color:#a53e70}
-.entry{border:1px solid var(--line);border-radius:17px;padding:14px;margin-top:12px;background:#fffafd}
-.entry-head{display:flex;justify-content:space-between;gap:8px;align-items:start}
-.entry-title{font-weight:800;color:#a53e70}
-.entry p{margin:8px 0;line-height:1.5;font-size:.92rem;white-space:pre-wrap}
-.entry-actions{display:flex;gap:7px;flex-wrap:wrap}
-.entry-actions button{padding:8px 10px;font-size:.84rem}
-.empty{text-align:center;color:#967e8b;padding:22px 8px}
-.footer{text-align:center;font-size:.84rem;color:#907987;padding:18px 10px;line-height:1.6}
-.small{font-size:.8rem;color:#8a7180}
-@media(max-width:540px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.card{padding:16px}.hero{padding:22px 15px}}
+
+.hero, .card {
+  background: rgba(255,255,255,.94);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 22px;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 24px #477eaa12;
+}
+
+.hero {
+  text-align: center;
+  padding: 30px 18px;
+}
+
+.hero .emoji {
+  font-size: 42px;
+}
+
+h1 {
+  color: var(--deep);
+  margin: 10px 0;
+}
+
+h2 {
+  color: var(--deep);
+  font-size: 1.15rem;
+  margin-top: 0;
+}
+
+.subtitle, .hint {
+  color: #66819a;
+  line-height: 1.6;
+  font-size: .9rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 7px 13px;
+  background: var(--pale);
+  color: var(--deep);
+  border-radius: 30px;
+  font-size: .85rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-size: .92rem;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 13px;
+  background: #fbfdff;
+  color: var(--ink);
+  font: inherit;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+button {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 13px;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.primary {
+  background: linear-gradient(120deg, #8fc5f4, #c0ddff);
+  color: #153d63;
+  flex: 1;
+}
+
+.secondary {
+  background: var(--pale);
+  color: var(--deep);
+}
+
+.danger {
+  background: #fff0f0;
+  color: #9c4141;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.status {
+  margin-top: 12px;
+  color: var(--deep);
+  font-size: .9rem;
+}
+
+.entry {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 15px;
+  margin-top: 12px;
+  background: #fafdff;
+  overflow-wrap: anywhere;
+}
+
+.entry-title {
+  color: var(--deep);
+  font-weight: bold;
+}
+
+.entry p {
+  line-height: 1.6;
+  font-size: .92rem;
+}
+
+.empty {
+  text-align: center;
+  color: #66819a;
+  padding: 24px 8px;
+}
+
+footer {
+  text-align: center;
+  color: #66819a;
+  font-size: .85rem;
+  line-height: 1.6;
+  padding: 10px;
+}
+
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full {
+    grid-column: auto;
+  }
+
+  .card {
+    padding: 17px;
+  }
+}
 </style>
 </head>
+
 <body>
-<div class="wrap">
+<main class="container">
+
   <header class="hero">
-    <div class="heart">💗🧸💌</div>
-    <h1>Our Little Care Log</h1>
-    <p class="sub">a tiny space to care for you, one day at a time 🌷<br>made with love, not for self-diagnosis 🫶🏻</p>
-    <span class="pill">🌸 you + me vs. the uncertainty 🌸</span>
+    <div class="emoji">💙🫧☁️</div>
+    <h1>Blue Check-In</h1>
+    <p class="subtitle">
+      A little space to keep track of what uu notice.
+    </p>
+    <span class="badge">made with care, just for imupp 💙</span>
   </header>
 
   <section class="card">
-    <h2>📝 Log a tremor episode</h2>
+    <h2>📝 Add an entry</h2>
+
     <form id="logForm">
       <div class="grid">
+
         <div class="field">
           <label for="date">📅 Date</label>
           <input id="date" type="date" required>
         </div>
+
         <div class="field">
-          <label for="time">🕒 Approx. time</label>
+          <label for="time">🕒 Approximate time</label>
           <input id="time" type="time">
         </div>
+
         <div class="field">
-          <label for="duration">⏳ How long?</label>
+          <label for="duration">⏳ Duration</label>
           <select id="duration">
-            <option value="Belum diketahui">Not sure yet 🤍</option>
-            <option>Kurang dari 1 menit</option>
-            <option>1–10 menit</option>
-            <option>Lebih dari 10 menit</option>
-            <option>Terus-menerus / hampir terus-menerus</option>
+            <option>Not sure</option>
+            <option>Less than 1 minute</option>
+            <option>1–10 minutes</option>
+            <option>More than 10 minutes</option>
+            <option>Almost continuous</option>
           </select>
         </div>
+
         <div class="field">
-          <label for="hands">🖐🏻 Which hand(s)?</label>
+          <label for="hands">🖐🏻 Which hand?</label>
           <select id="hands">
-            <option>Kedua tangan</option>
-            <option>Tangan kanan</option>
-            <option>Tangan kiri</option>
-            <option>Belum yakin</option>
+            <option>Both hands</option>
+            <option>Right hand</option>
+            <option>Left hand</option>
+            <option>Not sure</option>
           </select>
         </div>
+
         <div class="field">
-          <label for="position">🫧 When did it happen?</label>
+          <label for="position">🫧 When?</label>
           <select id="position">
-            <option>Saat tangan santai / diam</option>
-            <option>Saat tangan direntangkan</option>
-            <option>Saat bergerak / melakukan aktivitas</option>
-            <option>Saat diam dan bergerak</option>
-            <option>Belum yakin</option>
+            <option>At rest</option>
+            <option>When holding hands out</option>
+            <option>During movement</option>
+            <option>Both at rest and during movement</option>
+            <option>Not sure</option>
           </select>
         </div>
+
         <div class="field">
-          <label for="impact">🌷 How much did it affect you?</label>
+          <label for="impact">🎯 Impact on activities</label>
           <select id="impact">
-            <option>Ringan — aktivitas tetap bisa dilakukan</option>
-            <option>Sedang — beberapa aktivitas terganggu</option>
-            <option>Berat — aktivitas sangat terganggu</option>
-            <option>Belum yakin</option>
+            <option>Not much</option>
+            <option>A little</option>
+            <option>Quite a bit</option>
+            <option>A lot</option>
+            <option>Not sure</option>
           </select>
         </div>
+
         <div class="field">
-          <label for="symptoms">💭 Other symptoms?</label>
+          <label for="symptoms">💭 Other symptoms</label>
           <select id="symptoms">
-            <option>Tidak ada yang disadari</option>
-            <option>Lemas / berkeringat / lapar</option>
-            <option>Jantung berdebar</option>
-            <option>Pusing / sakit kepala</option>
-            <option>Kebas / kesemutan</option>
-            <option>Gejala lain</option>
+            <option>None noticed</option>
+            <option>Weakness or sweating</option>
+            <option>Heart racing</option>
+            <option>Dizziness or headache</option>
+            <option>Numbness or tingling</option>
+            <option>Other symptoms</option>
           </select>
         </div>
+
         <div class="field">
-          <label for="context">☕ Context (optional)</label>
+          <label for="context">☕ In ur opinion, why is that happen?</label>
           <select id="context">
-            <option>Tidak diketahui</option>
-            <option>Kurang tidur / kelelahan</option>
-            <option>Telat makan</option>
-            <option>Minum kopi / teh pekat / energy drink</option>
-            <option>Stres atau sedang cemas</option>
-            <option>Setelah minum obat / suplemen</option>
-            <option>Lainnya</option>
+            <option>Not sure</option>
+            <option>Not enough sleep</option>
+            <option>Missed a meal</option>
+            <option>Coffee or energy drinks</option>
+            <option>Stress or anxiety</option>
+            <option>After medication or supplements</option>
+            <option>Other</option>
           </select>
         </div>
+
         <div class="field full">
-          <label for="notes">💌 Notes (optional)</label>
-          <textarea id="notes" placeholder="Apa yang terjadi? Apa yang terasa berbeda? Tulis seperlunya, no pressure 🤍"></textarea>
-          <p class="hint">Isi bersama kalau dia nyaman. Nggak perlu memantau setiap saat atau menebak penyebabnya.</p>
+          <label for="notes">💌 Extra notes (optional)</label>
+          <textarea id="notes"
+            placeholder="Anything you want to remember for your doctor..."></textarea>
+          <p class="hint">
+            Optional ajaa
+          </p>
         </div>
+
       </div>
+
       <div class="actions">
-        <button class="primary" type="submit">💗 Save this entry</button>
-        <button class="secondary" type="button" id="exportBtn">📋 Copy all logs</button>
+        <button class="primary" type="submit">
+          💙 Save entry
+        </button>
+        <button class="secondary" type="button" id="copyAll">
+          📋 Copy all
+        </button>
       </div>
-      <div id="status" class="status" role="status" aria-live="polite"></div>
+
+      <div id="status" class="status" aria-live="polite"></div>
     </form>
   </section>
 
   <section class="card">
-    <h2>🌼 Our little timeline</h2>
-    <p class="hint">Entries stay in this browser on this device. They are not automatically sent to your boyfriend or synced between phones.</p>
-    <div id="entries"><div class="empty">No logs yet 🌸<br>When you’re ready, add the first one above.</div></div>
+    <h2>🌊 Ur timeline</h2>
+    <p class="hint">
+      Entries are stored in this browser on this device.
+    </p>
+
+    <div id="entries">
+      <div class="empty">No entries yet 🫧</div>
+    </div>
+
     <div class="actions">
-      <button class="secondary" id="downloadBtn" type="button">⬇️ Download logs (.txt)</button>
-      <button class="danger" id="clearBtn" type="button">🧹 Clear all logs</button>
+      <button class="secondary" id="download">
+        ⬇️ Download filenya
+      </button>
+      <button class="danger" id="clear">
+        🗑️ Clear all
+      </button>
     </div>
   </section>
 
   <section class="card">
-    <h2>🫶🏻 Little reminders</h2>
-    <p>💗 You can support him, but you don’t have to diagnose or fix everything.</p>
-    <p>🩺 Tremor that keeps recurring for weeks should be checked by a doctor soon, even without other symptoms.</p>
-    <p>🚨 If sudden tremor comes with one-sided weakness, facial drooping, trouble speaking, severe confusion, or fainting, contact emergency services and someone nearby. Don’t wait for a chat reply.</p>
-    <p class="small">Privacy note: avoid entering passwords, exact addresses, or other sensitive details. Ask his permission before keeping or sharing health notes.</p>
+    <h2>💙 A gentle reminder</h2>
+    <p>
+      If this getting worse, pls go to the doctor ya sayangg
+    </p>
+    <p>
+      🚨 Sudden weakness on one side, facial drooping, difficulty
+      speaking, severe confusion, or fainting requires urgent
+      medical help. Reach out ke bunda or kakak ASAP.
+    </p>
   </section>
 
-  <div class="footer">a soft reminder: you don’t have to feel okay every second to be cared for 💞<br>🌙 made with care, for the two of you 🌙</div>
-</div>
+  <footer>
+    Get well soon bby💙🧸
+  </footer>
+
+</main>
+
 <script>
-const STORAGE_KEY = "ourLittleCareLog_v1";
-const $ = (id) => document.getElementById(id);
+const STORAGE_KEY = "blueCheckInLogs_v1";
+
+const $ = id => document.getElementById(id);
+
 let logs = [];
-try { logs = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); } catch { logs = []; }
 
-const today = new Date();
-const localDate = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0,10);
-$("date").value = localDate;
+try {
+  logs = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+} catch {
+  logs = [];
+}
 
-function persist() {
+// Set today's local date.
+const now = new Date();
+
+$("date").value = new Date(
+  now.getTime() - now.getTimezoneOffset() * 60000
+).toISOString().slice(0, 10);
+
+function saveLogs() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(logs));
-    $("status").textContent = "Saved on this device 💗";
+    $("status").textContent = "Saved on this device 💙";
   } catch {
-    $("status").textContent = "Could not save in this browser. You can copy or download the logs instead. 🤍";
+    $("status").textContent =
+      "Storage unavailable. Please copy or download your entries.";
   }
 }
-function escapeHtml(value) {
-  return String(value ?? "").replace(/[&<>"']/g, c => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[c]));
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
 }
-function entryText(log) {
-  return `💗 TREMOR CARE LOG
-Date: ${log.date || "Not recorded"}
+
+function formatEntry(log) {
+  return `BLUE CHECK-IN 💙
+Date: ${log.date}
 Time: ${log.time || "Not recorded"}
 Duration: ${log.duration}
-Hand(s): ${log.hands}
+Hands: ${log.hands}
 When: ${log.position}
 Impact: ${log.impact}
 Other symptoms: ${log.symptoms}
 Context: ${log.context}
 Notes: ${log.notes || "None"}
-------------------------------`;
+---------------------------`;
 }
-function render() {
-  const root = $("entries");
-  if (!logs.length) {
-    root.innerHTML = '<div class="empty">No logs yet 🌸<br>When you’re ready, add the first one above.</div>';
+
+function renderLogs() {
+  const container = $("entries");
+
+  if (logs.length === 0) {
+    container.innerHTML =
+      '<div class="empty">No entries yet 🫧</div>';
     return;
   }
-  root.innerHTML = logs.slice().reverse().map(log => `
+
+  container.innerHTML = [...logs].reverse().map(log => `
     <article class="entry">
-      <div class="entry-head">
-        <div class="entry-title">💗 ${escapeHtml(log.date)} ${log.time ? "· " + escapeHtml(log.time) : ""}</div>
-        <span aria-hidden="true">🌷</span>
+      <div class="entry-title">
+        💙 ${escapeHTML(log.date)}
+        ${log.time ? " · " + escapeHTML(log.time) : ""}
       </div>
-      <p>${escapeHtml(log.duration)} · ${escapeHtml(log.hands)}<br>${escapeHtml(log.position)}<br>Impact: ${escapeHtml(log.impact)}<br>Other symptoms: ${escapeHtml(log.symptoms)}<br>Context: ${escapeHtml(log.context)}${log.notes ? "<br>Notes: " + escapeHtml(log.notes) : ""}</p>
-      <div class="entry-actions">
-        <button class="secondary" type="button" data-copy="${escapeHtml(log.id)}">📋 Copy</button>
-        <button class="danger" type="button" data-delete="${escapeHtml(log.id)}">🗑️ Delete</button>
+
+      <p>
+        ⏳ ${escapeHTML(log.duration)}<br>
+        🖐🏻 ${escapeHTML(log.hands)}<br>
+        🫧 ${escapeHTML(log.position)}<br>
+        🎯 Impact: ${escapeHTML(log.impact)}<br>
+        💭 Symptoms: ${escapeHTML(log.symptoms)}<br>
+        ☕ Context: ${escapeHTML(log.context)}
+        ${log.notes
+          ? "<br>💌 Notes: " + escapeHTML(log.notes)
+          : ""}
+      </p>
+
+      <div class="actions">
+        <button class="secondary" data-copy="${escapeHTML(log.id)}">
+          📋 Copy
+        </button>
+        <button class="danger" data-delete="${escapeHTML(log.id)}">
+          🗑️ Delete
+        </button>
       </div>
-    </article>`).join("");
+    </article>
+  `).join("");
 }
-$("logForm").addEventListener("submit", (event) => {
+
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    $("status").textContent = "Copied successfully 💌";
+  } catch {
+    const area = document.createElement("textarea");
+    area.value = text;
+    document.body.appendChild(area);
+    area.select();
+
+    try {
+      document.execCommand("copy");
+      $("status").textContent = "Copied 💌";
+    } catch {
+      $("status").textContent =
+        "Copy unavailable. Try downloading instead.";
+    }
+
+    area.remove();
+  }
+}
+
+$("logForm").addEventListener("submit", event => {
   event.preventDefault();
+
   const log = {
-    id: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random()),
+    id: Date.now() + "-" + Math.random(),
     date: $("date").value,
     time: $("time").value,
     duration: $("duration").value,
@@ -241,55 +491,67 @@ $("logForm").addEventListener("submit", (event) => {
     context: $("context").value,
     notes: $("notes").value.trim()
   };
+
   logs.push(log);
-  persist();
-  render();
+  saveLogs();
+  renderLogs();
+
   $("notes").value = "";
 });
-$("entries").addEventListener("click", async (event) => {
+
+$("entries").addEventListener("click", event => {
   const copyId = event.target.dataset.copy;
   const deleteId = event.target.dataset.delete;
+
   if (copyId) {
-    const log = logs.find(x => x.id === copyId);
-    if (log) {
-      try { await navigator.clipboard.writeText(entryText(log)); $("status").textContent = "Entry copied 💌"; }
-      catch { fallbackCopy(entryText(log)); }
-    }
+    const log = logs.find(item => item.id === copyId);
+    if (log) copyText(formatEntry(log));
   }
+
   if (deleteId) {
-    logs = logs.filter(x => x.id !== deleteId);
-    persist(); render();
+    logs = logs.filter(item => item.id !== deleteId);
+    saveLogs();
+    renderLogs();
   }
 });
-function fallbackCopy(text) {
-  const area = document.createElement("textarea");
-  area.value = text; document.body.appendChild(area); area.select();
-  try { document.execCommand("copy"); $("status").textContent = "Copied 💌"; }
-  catch { $("status").textContent = "Copy didn’t work. Try downloading the logs instead. 🤍"; }
-  area.remove();
-}
-$("exportBtn").addEventListener("click", async () => {
-  const text = logs.length ? logs.map(entryText).join("\n\n") : "No logs yet 🌸";
-  try { await navigator.clipboard.writeText(text); $("status").textContent = "All logs copied 💗"; }
-  catch { fallbackCopy(text); }
+
+$("copyAll").addEventListener("click", () => {
+  const text = logs.length
+    ? logs.map(formatEntry).join("\n\n")
+    : "No entries yet.";
+
+  copyText(text);
 });
-$("downloadBtn").addEventListener("click", () => {
-  const text = logs.length ? logs.map(entryText).join("\n\n") : "No logs yet 🌸";
-  const blob = new Blob([text], {type:"text/plain;charset=utf-8"});
+
+$("download").addEventListener("click", () => {
+  const text = logs.length
+    ? logs.map(formatEntry).join("\n\n")
+    : "No entries yet.";
+
+  const blob = new Blob([text], {
+    type: "text/plain;charset=utf-8"
+  });
+
   const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url; a.download = "our-little-care-log.txt"; a.click();
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "blue-check-in.txt";
+  link.click();
+
   URL.revokeObjectURL(url);
 });
-$("clearBtn").addEventListener("click", () => {
-  if (confirm("Clear every saved entry from this browser? Make a backup first if you need one. 💗")) {
+
+$("clear").addEventListener("click", () => {
+  if (confirm("Clear all saved entries from this browser? 💙")) {
     logs = [];
-    try { localStorage.removeItem(STORAGE_KEY); } catch {}
-    $("status").textContent = "All entries cleared 🌸";
-    render();
+    localStorage.removeItem(STORAGE_KEY);
+    saveLogs();
+    renderLogs();
   }
 });
-render();
+
+renderLogs();
 </script>
 </body>
 </html>
