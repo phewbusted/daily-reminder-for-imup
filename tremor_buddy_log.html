@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Little Care Log 💗</title>
+<style>
+:root{
+  --pink:#f6a8c8; --pink2:#ffe4ef; --rose:#c94f83; --ink:#493442;
+  --cream:#fffafc; --lav:#eee7ff; --line:#f2cddd; --white:#fff;
+}
+*{box-sizing:border-box}
+body{
+ margin:0; font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;
+ background:linear-gradient(160deg,#fff4f8 0%,#f9f1ff 55%,#fffaf1 100%);
+ color:var(--ink); min-height:100vh; padding:22px 14px 40px;
+}
+.wrap{max-width:760px;margin:auto}
+.hero{
+ text-align:center;padding:26px 20px 22px;border:2px solid #fff;
+ background:rgba(255,255,255,.78);border-radius:28px;box-shadow:0 10px 35px #d88aaf22;
+}
+.heart{font-size:2.4rem;animation:float 2.4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-5px)}}
+h1{font-size:clamp(1.8rem,5vw,2.5rem);margin:7px 0;color:var(--rose)}
+.sub{margin:0;line-height:1.6;color:#806574}
+.pill{display:inline-block;background:var(--pink2);color:var(--rose);padding:7px 12px;border-radius:999px;font-size:.86rem;margin-top:12px}
+.card{background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:22px;padding:20px;margin-top:16px;box-shadow:0 7px 22px #d88aaf12}
+h2{font-size:1.15rem;margin:0 0 15px;color:#a53e70}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.field{display:flex;flex-direction:column;gap:7px}
+.full{grid-column:1/-1}
+label{font-size:.92rem;font-weight:700}
+input,select,textarea{
+ width:100%;font:inherit;color:var(--ink);padding:12px 13px;border-radius:13px;
+ border:1.5px solid #efc7d8;background:#fffdfd;outline:none;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--rose);box-shadow:0 0 0 3px #f6a8c833}
+textarea{min-height:95px;resize:vertical}
+.hint{font-size:.83rem;color:#8a7180;line-height:1.5;margin:4px 0 0}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+button{font:inherit;font-weight:800;border:0;border-radius:14px;padding:12px 16px;cursor:pointer}
+.primary{background:linear-gradient(120deg,#f4a0c3,#e9b7f4);color:#562e43;flex:1}
+.secondary{background:#fff0f6;color:#a53e70;border:1px solid #f0c2d6}
+.danger{background:#fff1ee;color:#a64747;border:1px solid #f3c9c3}
+.status{font-size:.9rem;margin-top:12px;min-height:1.3em;color:#a53e70}
+.entry{border:1px solid var(--line);border-radius:17px;padding:14px;margin-top:12px;background:#fffafd}
+.entry-head{display:flex;justify-content:space-between;gap:8px;align-items:start}
+.entry-title{font-weight:800;color:#a53e70}
+.entry p{margin:8px 0;line-height:1.5;font-size:.92rem;white-space:pre-wrap}
+.entry-actions{display:flex;gap:7px;flex-wrap:wrap}
+.entry-actions button{padding:8px 10px;font-size:.84rem}
+.empty{text-align:center;color:#967e8b;padding:22px 8px}
+.footer{text-align:center;font-size:.84rem;color:#907987;padding:18px 10px;line-height:1.6}
+.small{font-size:.8rem;color:#8a7180}
+@media(max-width:540px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.card{padding:16px}.hero{padding:22px 15px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="heart">💗🧸💌</div>
+    <h1>Our Little Care Log</h1>
+    <p class="sub">a tiny space to care for you, one day at a time 🌷<br>made with love, not for self-diagnosis 🫶🏻</p>
+    <span class="pill">🌸 you + me vs. the uncertainty 🌸</span>
+  </header>
+
+  <section class="card">
+    <h2>📝 Log a tremor episode</h2>
+    <form id="logForm">
+      <div class="grid">
+        <div class="field">
+          <label for="date">📅 Date</label>
+          <input id="date" type="date" required>
+        </div>
+        <div class="field">
+          <label for="time">🕒 Approx. time</label>
+          <input id="time" type="time">
+        </div>
+        <div class="field">
+          <label for="duration">⏳ How long?</label>
+          <select id="duration">
+            <option value="Belum diketahui">Not sure yet 🤍</option>
+            <option>Kurang dari 1 menit</option>
+            <option>1–10 menit</option>
+            <option>Lebih dari 10 menit</option>
+            <option>Terus-menerus / hampir terus-menerus</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="hands">🖐🏻 Which hand(s)?</label>
+          <select id="hands">
+            <option>Kedua tangan</option>
+            <option>Tangan kanan</option>
+            <option>Tangan kiri</option>
+            <option>Belum yakin</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="position">🫧 When did it happen?</label>
+          <select id="position">
+            <option>Saat tangan santai / diam</option>
+            <option>Saat tangan direntangkan</option>
+            <option>Saat bergerak / melakukan aktivitas</option>
+            <option>Saat diam dan bergerak</option>
+            <option>Belum yakin</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="impact">🌷 How much did it affect you?</label>
+          <select id="impact">
+            <option>Ringan — aktivitas tetap bisa dilakukan</option>
+            <option>Sedang — beberapa aktivitas terganggu</option>
+            <option>Berat — aktivitas sangat terganggu</option>
+            <option>Belum yakin</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="symptoms">💭 Other symptoms?</label>
+          <select id="symptoms">
+            <option>Tidak ada yang disadari</option>
+            <option>Lemas / berkeringat / lapar</option>
+            <option>Jantung berdebar</option>
+            <option>Pusing / sakit kepala</option>
+            <option>Kebas / kesemutan</option>
+            <option>Gejala lain</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="context">☕ Context (optional)</label>
+          <select id="context">
+            <option>Tidak diketahui</option>
+            <option>Kurang tidur / kelelahan</option>
+            <option>Telat makan</option>
+            <option>Minum kopi / teh pekat / energy drink</option>
+            <option>Stres atau sedang cemas</option>
+            <option>Setelah minum obat / suplemen</option>
+            <option>Lainnya</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="notes">💌 Notes (optional)</label>
+          <textarea id="notes" placeholder="Apa yang terjadi? Apa yang terasa berbeda? Tulis seperlunya, no pressure 🤍"></textarea>
+          <p class="hint">Isi bersama kalau dia nyaman. Nggak perlu memantau setiap saat atau menebak penyebabnya.</p>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="primary" type="submit">💗 Save this entry</button>
+        <button class="secondary" type="button" id="exportBtn">📋 Copy all logs</button>
+      </div>
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>🌼 Our little timeline</h2>
+    <p class="hint">Entries stay in this browser on this device. They are not automatically sent to your boyfriend or synced between phones.</p>
+    <div id="entries"><div class="empty">No logs yet 🌸<br>When you’re ready, add the first one above.</div></div>
+    <div class="actions">
+      <button class="secondary" id="downloadBtn" type="button">⬇️ Download logs (.txt)</button>
+      <button class="danger" id="clearBtn" type="button">🧹 Clear all logs</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>🫶🏻 Little reminders</h2>
+    <p>💗 You can support him, but you don’t have to diagnose or fix everything.</p>
+    <p>🩺 Tremor that keeps recurring for weeks should be checked by a doctor soon, even without other symptoms.</p>
+    <p>🚨 If sudden tremor comes with one-sided weakness, facial drooping, trouble speaking, severe confusion, or fainting, contact emergency services and someone nearby. Don’t wait for a chat reply.</p>
+    <p class="small">Privacy note: avoid entering passwords, exact addresses, or other sensitive details. Ask his permission before keeping or sharing health notes.</p>
+  </section>
+
+  <div class="footer">a soft reminder: you don’t have to feel okay every second to be cared for 💞<br>🌙 made with care, for the two of you 🌙</div>
+</div>
+<script>
+const STORAGE_KEY = "ourLittleCareLog_v1";
+const $ = (id) => document.getElementById(id);
+let logs = [];
+try { logs = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); } catch { logs = []; }
+
+const today = new Date();
+const localDate = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0,10);
+$("date").value = localDate;
+
+function persist() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(logs));
+    $("status").textContent = "Saved on this device 💗";
+  } catch {
+    $("status").textContent = "Could not save in this browser. You can copy or download the logs instead. 🤍";
+  }
+}
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+function entryText(log) {
+  return `💗 TREMOR CARE LOG
+Date: ${log.date || "Not recorded"}
+Time: ${log.time || "Not recorded"}
+Duration: ${log.duration}
+Hand(s): ${log.hands}
+When: ${log.position}
+Impact: ${log.impact}
+Other symptoms: ${log.symptoms}
+Context: ${log.context}
+Notes: ${log.notes || "None"}
+------------------------------`;
+}
+function render() {
+  const root = $("entries");
+  if (!logs.length) {
+    root.innerHTML = '<div class="empty">No logs yet 🌸<br>When you’re ready, add the first one above.</div>';
+    return;
+  }
+  root.innerHTML = logs.slice().reverse().map(log => `
+    <article class="entry">
+      <div class="entry-head">
+        <div class="entry-title">💗 ${escapeHtml(log.date)} ${log.time ? "· " + escapeHtml(log.time) : ""}</div>
+        <span aria-hidden="true">🌷</span>
+      </div>
+      <p>${escapeHtml(log.duration)} · ${escapeHtml(log.hands)}<br>${escapeHtml(log.position)}<br>Impact: ${escapeHtml(log.impact)}<br>Other symptoms: ${escapeHtml(log.symptoms)}<br>Context: ${escapeHtml(log.context)}${log.notes ? "<br>Notes: " + escapeHtml(log.notes) : ""}</p>
+      <div class="entry-actions">
+        <button class="secondary" type="button" data-copy="${escapeHtml(log.id)}">📋 Copy</button>
+        <button class="danger" type="button" data-delete="${escapeHtml(log.id)}">🗑️ Delete</button>
+      </div>
+    </article>`).join("");
+}
+$("logForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const log = {
+    id: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random()),
+    date: $("date").value,
+    time: $("time").value,
+    duration: $("duration").value,
+    hands: $("hands").value,
+    position: $("position").value,
+    impact: $("impact").value,
+    symptoms: $("symptoms").value,
+    context: $("context").value,
+    notes: $("notes").value.trim()
+  };
+  logs.push(log);
+  persist();
+  render();
+  $("notes").value = "";
+});
+$("entries").addEventListener("click", async (event) => {
+  const copyId = event.target.dataset.copy;
+  const deleteId = event.target.dataset.delete;
+  if (copyId) {
+    const log = logs.find(x => x.id === copyId);
+    if (log) {
+      try { await navigator.clipboard.writeText(entryText(log)); $("status").textContent = "Entry copied 💌"; }
+      catch { fallbackCopy(entryText(log)); }
+    }
+  }
+  if (deleteId) {
+    logs = logs.filter(x => x.id !== deleteId);
+    persist(); render();
+  }
+});
+function fallbackCopy(text) {
+  const area = document.createElement("textarea");
+  area.value = text; document.body.appendChild(area); area.select();
+  try { document.execCommand("copy"); $("status").textContent = "Copied 💌"; }
+  catch { $("status").textContent = "Copy didn’t work. Try downloading the logs instead. 🤍"; }
+  area.remove();
+}
+$("exportBtn").addEventListener("click", async () => {
+  const text = logs.length ? logs.map(entryText).join("\n\n") : "No logs yet 🌸";
+  try { await navigator.clipboard.writeText(text); $("status").textContent = "All logs copied 💗"; }
+  catch { fallbackCopy(text); }
+});
+$("downloadBtn").addEventListener("click", () => {
+  const text = logs.length ? logs.map(entryText).join("\n\n") : "No logs yet 🌸";
+  const blob = new Blob([text], {type:"text/plain;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "our-little-care-log.txt"; a.click();
+  URL.revokeObjectURL(url);
+});
+$("clearBtn").addEventListener("click", () => {
+  if (confirm("Clear every saved entry from this browser? Make a backup first if you need one. 💗")) {
+    logs = [];
+    try { localStorage.removeItem(STORAGE_KEY); } catch {}
+    $("status").textContent = "All entries cleared 🌸";
+    render();
+  }
+});
+render();
+</script>
+</body>
+</html>
